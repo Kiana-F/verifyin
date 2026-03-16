@@ -1,6 +1,14 @@
 <div align="center">
 
-<img src="https://img.shields.io/badge/VerifyIn-Visitor%20Management-1e3a5f?style=for-the-badge&logo=shield&logoColor=white" alt="VerifyIn"/>
+<<img width="308" height="456" alt="Image" src="https://github.com/user-attachments/assets/a31c9a68-d19f-4ef1-8ddc-d89cec3ca0d5" />
+
+<img width="294" height="459" alt="Image" src="https://github.com/user-attachments/assets/c26ef598-438b-4b13-b5b9-c4d243ee14da" />
+
+<img width="327" height="467" alt="Image" src="https://github.com/user-attachments/assets/955cc18b-47a7-48b4-93e2-3cbbb689b4fe" />
+
+<img width="327" height="479" alt="Image" src="https://github.com/user-attachments/assets/68696b94-2f46-4563-a28e-bc752f3b3163" />
+
+<img width="327" height="466" alt="Image" src="https://github.com/user-attachments/assets/e05ed5f5-fe6b-4828-b692-006d4bf5c9c9" />>
 
 # VerifyIn — Open Source Visitor Management System
 
