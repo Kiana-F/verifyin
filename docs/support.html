@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Support VerifyIn — Open Source Visitor Verification</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0f1f38;--navy-l:#162947;--navy-m:#1e3a5f;
+  --accent:#3b82f6;--green:#22c55e;--white:#f8fafc;--muted:#94a3b8;
+  --border:rgba(255,255,255,0.09);--card:rgba(255,255,255,0.04);
+}
+body{font-family:'DM Sans',sans-serif;background:var(--navy);color:var(--white);min-height:100vh;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+
+header{border-bottom:1px solid var(--border);padding:16px 24px;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:10px;font-size:18px;font-weight:500;color:var(--white)}
+.logo-icon{width:36px;height:36px;background:var(--navy-m);border-radius:10px;display:flex;align-items:center;justify-content:center}
+.logo-icon svg{display:block}
+.header-links{display:flex;gap:12px}
+.header-links a{font-size:13px;color:var(--muted);padding:6px 12px;border:1px solid var(--border);border-radius:8px}
+.header-links a:hover{color:var(--white);border-color:rgba(255,255,255,0.2);text-decoration:none}
+
+.hero{max-width:660px;margin:0 auto;text-align:center;padding:72px 24px 48px}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3rem);font-weight:600;line-height:1.2;margin-bottom:16px}
+.hero h1 span{color:var(--accent)}
+.hero p{font-size:17px;color:var(--muted);line-height:1.7;margin-bottom:32px}
+.mit-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(34,197,94,0.12);border:1px solid rgba(34,197,94,0.25);border-radius:20px;padding:5px 14px;font-size:13px;color:#86efac;margin-bottom:20px}
+
+.paypal-btn{
+  display:inline-flex;align-items:center;gap:10px;
+  background:#003087;color:#fff;border:none;
+  padding:16px 36px;border-radius:12px;font-size:16px;font-weight:600;
+  cursor:pointer;font-family:'DM Sans',sans-serif;text-decoration:none;
+  transition:background .15s,transform .15s;
+}
+.paypal-btn:hover{background:#002066;transform:translateY(-2px);text-decoration:none;color:#fff}
+.paypal-btn svg{display:block}
+.paypal-sub{font-size:12px;color:var(--muted);margin-top:10px}
+
+.section{max-width:800px;margin:0 auto;padding:0 24px 72px}
+.section-title{font-size:12px;font-weight:500;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:20px;text-align:center}
+
+.tiers{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:56px}
+.tier{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px;transition:border-color .15s}
+.tier:hover{border-color:rgba(255,255,255,0.2)}
+.tier.featured{border-color:var(--accent)}
+.tier-badge{font-size:11px;font-weight:500;color:var(--accent);background:rgba(59,130,246,0.12);border-radius:20px;padding:3px 10px;display:inline-block;margin-bottom:12px}
+.tier h3{font-size:18px;font-weight:600;margin-bottom:4px}
+.tier .amount{font-size:28px;font-weight:600;color:var(--white);margin-bottom:12px}
+.tier .amount span{font-size:14px;font-weight:400;color:var(--muted)}
+.tier ul{list-style:none;font-size:13px;color:var(--muted);line-height:1.9}
+.tier ul li::before{content:"✓  ";color:var(--green)}
+.tier-btn{display:block;width:100%;margin-top:18px;padding:10px;background:rgba(59,130,246,0.12);border:1px solid rgba(59,130,246,0.3);color:var(--accent);border-radius:8px;font-size:13px;font-weight:500;text-align:center;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background .15s}
+.tier-btn:hover{background:rgba(59,130,246,0.22);text-decoration:none;color:var(--accent)}
+.tier.featured .tier-btn{background:var(--accent);color:#fff;border-color:var(--accent)}
+.tier.featured .tier-btn:hover{background:#2563eb}
+
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:56px}
+.feat{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px}
+.feat-icon{width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;margin-bottom:12px}
+.feat h4{font-size:14px;font-weight:500;margin-bottom:4px}
+.feat p{font-size:12px;color:var(--muted);line-height:1.6}
+
+.stats-row{display:flex;justify-content:center;gap:40px;flex-wrap:wrap;margin:40px 0 60px;padding:32px;background:var(--card);border:1px solid var(--border);border-radius:16px}
+.stat{text-align:center}
+.stat-n{font-size:28px;font-weight:600}
+.stat-l{font-size:12px;color:var(--muted);margin-top:2px;text-transform:uppercase;letter-spacing:.05em}
+
+.faq{max-width:600px;margin:0 auto 60px}
+.faq-item{border-bottom:1px solid var(--border);padding:18px 0}
+.faq-item:first-child{border-top:1px solid var(--border)}
+.faq-q{font-size:14px;font-weight:500;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.faq-a{font-size:13px;color:var(--muted);line-height:1.7;margin-top:10px;display:none}
+.faq-a.open{display:block}
+
+footer{border-top:1px solid var(--border);padding:28px 24px;text-align:center;font-size:12px;color:var(--muted)}
+footer a{color:var(--muted)}
+
+@media(max-width:600px){.hero{padding:40px 20px 32px}.tiers{grid-template-columns:1fr}.stats-row{gap:24px}.header-links{display:none}}
+</style>
+  <script src="https://www.paypal.com/sdk/js?client-id=BAAPPqQjbrsicIQGYdiL9cDfEMRFs_X9a2pgjlORk6oiZ_2UQqFLUuNkz_Xb2IRXj7gwdyuNhdmmH0iZF0&components=hosted-buttons&disable-funding=venmo&currency=USD"></script>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-icon">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+      </svg>
+    </div>
+    VerifyIn
+  </div>
+  <div class="header-links">
+    <a href="https://github.com/Kiana-F/verifyin">GitHub</a>
+    <a href="https://github.com/Kiana-F/verifyin/blob/main/README.md">Docs</a>
+    <a href="https://github.com/Kiana-F/verifyin/issues">Issues</a>
+  </div>
+</header>
+
+<main>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="mit-badge">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      VerifyIn — Free & open source
+    </div>
+    <h1>VerifyIn keeps your <span>spaces secure.</span> For free.</h1>
+    <p>A fully open source visitor verification system for offices, apartments, and gated communities. Built for Africa. Self-hostable. Forever free.</p>
+
+    <div id="paypal-container-ERPFMVM7YV2R4" style="max-width:300px;margin:0 auto"></div>
+    <script>
+      paypal.HostedButtons({ hostedButtonId: "ERPFMVM7YV2R4" }).render("#paypal-container-ERPFMVM7YV2R4")
+    </script>
+    <div class="paypal-sub" style="margin-top:12px">Any amount helps keep VerifyIn maintained and free for everyone</div>
+  </div>
+
+  <!-- Stats -->
+  <div class="section">
+    <div class="stats-row">
+      <div class="stat"><div class="stat-n" style="color:#4ade80">MIT</div><div class="stat-l">License</div></div>
+      <div class="stat"><div class="stat-n" style="color:#60a5fa">4</div><div class="stat-l">User roles</div></div>
+      <div class="stat"><div class="stat-n" style="color:#fbbf24">100%</div><div class="stat-l">Self-hostable</div></div>
+      <div class="stat"><div class="stat-n" style="color:#f1f5f9">1-click</div><div class="stat-l">Docker setup</div></div>
+    </div>
+
+    <!-- What's included -->
+    <div class="section-title">What you get — completely free</div>
+    <div class="features-grid" style="margin-bottom:56px">
+      <div class="feat">
+        <div class="feat-icon" style="background:rgba(59,130,246,0.15)">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/></svg>
+        </div>
+        <h4>Visitor registration</h4>
+        <p>Public form, ID photo upload, instant host notification via SMS or email.</p>
+      </div>
+      <div class="feat">
+        <div class="feat-icon" style="background:rgba(34,197,94,0.15)">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <h4>Host approvals</h4>
+        <p>Hosts approve or deny with one tap. Visitors get a QR code on approval.</p>
+      </div>
+      <div class="feat">
+        <div class="feat-icon" style="background:rgba(245,158,11,0.15)">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2"><path d="M3 7V5a2 2 0 012-2h2M17 3h2a2 2 0 012 2v2M21 17v2a2 2 0 01-2 2h-2M7 21H5a2 2 0 01-2-2v-2"/><rect x="7" y="7" width="10" height="10" rx="1"/></svg>
+        </div>
+        <h4>QR check-in</h4>
+        <p>Security scans the QR at the gate. Full visitor profile shown instantly.</p>
+      </div>
+      <div class="feat">
+        <div class="feat-icon" style="background:rgba(168,85,247,0.15)">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c084fc" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
+        <h4>Admin dashboard</h4>
+        <p>Live stats, venue breakdown, full visit history, CSV/JSON export.</p>
+      </div>
+      <div class="feat">
+        <div class="feat-icon" style="background:rgba(239,68,68,0.15)">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h4>Multi-venue</h4>
+        <p>One system for offices, apartments, and gated communities.</p>
+      </div>
+      <div class="feat">
+        <div class="feat-icon" style="background:rgba(59,130,246,0.15)">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+        </div>
+        <h4>Installable PWA</h4>
+        <p>Security guards install it as a native app on their phones. No App Store.</p>
+      </div>
+    </div>
+
+    <!-- Support tiers -->
+    <div class="section-title">Support the project</div>
+    <div class="tiers">
+      <div class="tier">
+        <div class="tier-badge">Coffee</div>
+        <h3>Buy me a coffee</h3>
+        <div class="amount">$5 <span>once</span></div>
+        <ul>
+          <li>My eternal gratitude</li>
+          <li>Name in CHANGELOG</li>
+          <li>Good karma guaranteed</li>
+        </ul>
+        <a href="javascript:void(0)" onclick="document.getElementById('paypal-container-ERPFMVM7YV2R4').scrollIntoView({behavior:'smooth'})" target="_blank" class="tier-btn">Send $5 via PayPal</a>
+      </div>
+
+      <div class="tier featured">
+        <div class="tier-badge">Supporter</div>
+        <h3>Project supporter</h3>
+        <div class="amount">$20 <span>once</span></div>
+        <ul>
+          <li>Everything above</li>
+          <li>Priority issue response</li>
+          <li>Shoutout on GitHub README</li>
+          <li>Early access to new features</li>
+        </ul>
+        <a href="javascript:void(0)" onclick="document.getElementById('paypal-container-ERPFMVM7YV2R4').scrollIntoView({behavior:'smooth'})" target="_blank" class="tier-btn">Send $20 via PayPal</a>
+      </div>
+
+      <div class="tier">
+        <div class="tier-badge">Sponsor</div>
+        <h3>Project sponsor</h3>
+        <div class="amount">$50 <span>once</span></div>
+        <ul>
+          <li>Everything above</li>
+          <li>Your logo on README</li>
+          <li>Feature request priority</li>
+          <li>30-min setup call</li>
+        </ul>
+        <a href="javascript:void(0)" onclick="document.getElementById('paypal-container-ERPFMVM7YV2R4').scrollIntoView({behavior:'smooth'})" target="_blank" class="tier-btn">Send $50 via PayPal</a>
+      </div>
+    </div>
+
+    <!-- PayPal direct -->
+    <div style="text-align:center;padding:32px;background:var(--card);border:1px solid var(--border);border-radius:16px;margin-bottom:48px">
+      <p style="font-size:15px;color:var(--muted);margin-bottom:20px">Or send any amount directly — every contribution helps keep this project alive.</p>
+      <div id="paypal-container-ERPFMVM7YV2R4-2" style="max-width:320px;margin:0 auto"></div>
+      <script>
+        paypal.HostedButtons({ hostedButtonId: "ERPFMVM7YV2R4" }).render("#paypal-container-ERPFMVM7YV2R4-2")
+      </script>
+    </div>
+
+    <!-- FAQ -->
+    <div class="section-title">Common questions</div>
+    <div class="faq">
+      <div class="faq-item"><div class="faq-q" onclick="toggle(this)">Is VerifyIn really free? <span>+</span></div><div class="faq-a">Yes — completely free, forever. MIT license means you can use it, modify it, and even build a business on top of it. No hidden fees, no "free tier" limits.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggle(this)">Do I need technical skills to set it up? <span>+</span></div><div class="faq-a">You need basic comfort with a terminal. The setup script handles everything — just fill in your API keys (Africa's Talking, SendGrid, Cloudinary) and run one command.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggle(this)">Does it work without internet? <span>+</span></div><div class="faq-a">The security guard console works offline thanks to the service worker — it caches the app shell. API calls (check-in, check-out) still need a connection.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggle(this)">Can I contribute code? <span>+</span></div><div class="faq-a">Absolutely — that's the whole point of open source! See CONTRIBUTING.md for how to get started. All skill levels welcome.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggle(this)">Why PayPal and not M-Pesa? <span>+</span></div><div class="faq-a">PayPal works internationally. M-Pesa integration is on the roadmap — when it's done, we'll add a Paybill option here too!</div></div>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <p>VerifyIn is open source software released under the <a href="https://github.com/Kiana-F/verifyin/blob/main/LICENSE" target="_blank">MIT License</a>.</p>
+  <p style="margin-top:6px">Built with care by <a href="https://github.com/Kiana-F" target="_blank">Kiana-F</a> · <a href="https://github.com/Kiana-F/verifyin" target="_blank">Star on GitHub</a></p>
+</footer>
+
+<script>
+function toggle(el){
+  var a=el.nextElementSibling;
+  var open=a.classList.toggle('open');
+  el.querySelector('span').textContent=open?'−':'+';
+}
+</script>
+</body>
+</html>

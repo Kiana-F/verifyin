@@ -1,0 +1,9 @@
+# GitHub Sponsors / Funding configuration
+# This file makes the "Sponsor" button appear on your GitHub repo page.
+# Replace YOUR_PAYPAL_USERNAME with your actual PayPal.me username.
+
+patreon:        # your Patreon username (optional)
+open_collective: # your Open Collective name (optional)
+ko_fi:          # your Ko-fi username (optional)
+custom:
+  - https://paypal.me/YOUR_PAYPAL_USERNAME
